@@ -136,7 +136,6 @@ input:focus {
 is invalid, with higher specificity than above */
 input:focus:invalid {
     border: 1px solid red;
-    content: " (" attr(data-help) ")";
 }
 /* if input is invalid, puts a helpful
 note behind the label for user to read */
