@@ -125,31 +125,41 @@ input{
     text-decoration: none;
 }
 
+/* borders make focused input stand out. Outline must be a part
+of default setting for inputs, so I took them out */
 input:focus {
     border: 1px solid blue;
     box-shadow: 0px 3px 10px rgba(0,0,0,0.3);
     outline: none;    
 }
+/* Visual cue that lets user know input 
+is invalid, with higher specificity than above */
 input:focus:invalid {
     border: 1px solid red;
+    content: " (" attr(data-help) ")";
 }
-
+/* if input is invalid, puts a helpful
+note behind the label for user to read */
+input:focus:invalid + label:after {
+    content: " (" attr(data-help) ")";
+    color: red;
+}
+/* Visual cue for error class to let user
+know password doesn't meet criteria. Used
+ID selector to have higher specificity */
 #password.error,
 #password2.error {
     border: 1px solid red;
 }
-
+/* once input is long enough (valid), gives user 
+hint that passwords must match */
 #password:valid.error + label:after,
 #password2:valid.error + label:after {
     content: " (must match)";
     color: red;
 }
-
-input:focus:invalid + label:after {
-    content: " (" attr(data-help) ")";
-    color: red;
-}
-
+/* This just puts a nice greenish border
+once required inputs are valid */
 input[required]:valid {
     border: 1px solid #596D48;
 }
